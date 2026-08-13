@@ -31,12 +31,12 @@ export const colOf = (s: Sq) => s & 7;
 export const sqOf = (r: number, c: number) => r * 8 + c;
 
 export function algebraic(s: Sq) {
-  return `${FILES[colOf(s)]}${rowOf(s) + 1}`;
+  return `${FILES[colOf(s)]!}${rowOf(s) + 1}`;
 }
 
 export function parseSquare(a: string): Sq {
-  const c = FILES.indexOf(a[0].toLowerCase());
-  const r = parseInt(a[1], 10) - 1;
+  const c = FILES.indexOf(a[0]!.toLowerCase());
+  const r = parseInt(a[1]!, 10) - 1;
   return sqOf(r, c);
 }
 
@@ -60,12 +60,12 @@ export function moveIndex(from: Sq, to: Sq): number {
 }
 
 export function isKnightMove(from: Sq, to: Sq) {
-  return NEIGHBORS[from].includes(to);
+  return NEIGHBORS[from]!.includes(to);
 }
 
 export function maskOf(path: Sq[], upTo: number): bigint {
   let m = 0n;
-  for (let i = 0; i < upTo && i < path.length; i++) m |= 1n << BigInt(path[i]);
+  for (let i = 0; i < upTo && i < path.length; i++) m |= 1n << BigInt(path[i]!);
   return m;
 }
 
@@ -76,12 +76,12 @@ export function maskHex(m: bigint) {
 /** Onward accessibility degree of `sq` given a visited set. */
 export function degree(sq: Sq, visited: boolean[]) {
   let d = 0;
-  for (const n of NEIGHBORS[sq]) if (!visited[n]) d++;
+  for (const n of NEIGHBORS[sq]!) if (!visited[n]) d++;
   return d;
 }
 
 export function legalTargets(from: Sq, visited: boolean[]) {
-  return NEIGHBORS[from]
+  return NEIGHBORS[from]!
     .filter((n) => !visited[n])
     .map((n) => ({ sq: n, deg: degree(n, visited) }))
     .sort((a, b) => a.deg - b.deg);
@@ -103,7 +103,7 @@ export function solveClosedTour(start: Sq, seed = 1): Sq[] | null {
     if (++nodes > 3_000_000) return false;
     if (depth === 64) return isKnightMove(cur, start);
 
-    const cands = NEIGHBORS[cur]
+    const cands = NEIGHBORS[cur]!
       .filter((n) => !visited[n])
       .map((n) => ({ n, d: degree(n, visited), j: rand() }))
       .sort((a, b) => a.d - b.d || a.j - b.j);
