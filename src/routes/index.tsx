@@ -148,7 +148,9 @@ function Page() {
   );
 
   return (
-    <main className="mx-auto max-w-7xl px-4 py-10 sm:px-8">
+    <main className="mx-auto max-w-7xl px-4 py-6 sm:px-8">
+      <GitHubBar />
+
       <header className="mb-8 text-center">
         <p className="text-[11px] uppercase tracking-[0.45em] text-primary/80">
           Storing · Sending · Processing · Saving
