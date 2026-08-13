@@ -4,7 +4,9 @@ import { GitBranch, GitCommit, ExternalLink, RefreshCw } from "lucide-react";
 import { GITHUB_REPO } from "@/config/github";
 import { listGitHubBranches } from "@/lib/github.functions";
 
-const buildBranch = (globalThis as unknown as { __GIT_BRANCH__?: string }).__GIT_BRANCH__ ?? "unknown";
+declare const __GIT_BRANCH__: string | undefined;
+
+const buildBranch = __GIT_BRANCH__ ?? "unknown";
 
 export function GitHubBar() {
   const fetchBranches = useServerFn(listGitHubBranches);
