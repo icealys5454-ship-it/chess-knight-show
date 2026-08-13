@@ -24,7 +24,7 @@ export const listGitHubBranches = createServerFn({ method: "GET" }).handler(
       return {
         ok: false as const,
         branches: [] as string[],
-        current: (globalThis as unknown as { __GIT_BRANCH__?: string }).__GIT_BRANCH__ ?? "unknown",
+        current: __GIT_BRANCH__ ?? "unknown",
         error: "GitHub connector not configured",
       };
     }
