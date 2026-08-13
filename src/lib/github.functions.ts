@@ -14,8 +14,8 @@ const branchSchema = z.array(
 
 export const listGitHubBranches = createServerFn({ method: "GET" }).handler(
   async () => {
-    const lovableKey = process.env.LOVABLE_API_KEY;
-    const githubKey = process.env.GITHUB_API_KEY;
+    const lovableKey = process.env["LOVABLE_API_KEY"];
+    const githubKey = process.env["GITHUB_API_KEY"];
 
     if (!lovableKey || !githubKey) {
       // Graceful degradation when the GitHub connector is not linked yet.
