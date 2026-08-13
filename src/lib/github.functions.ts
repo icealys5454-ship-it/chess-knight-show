@@ -2,6 +2,8 @@ import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 import { GITHUB_REPO } from "@/config/github";
 
+declare const __GIT_BRANCH__: string | undefined;
+
 const GATEWAY_URL = "https://connector-gateway.lovable.dev/github";
 
 const branchSchema = z.array(
