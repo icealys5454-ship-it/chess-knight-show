@@ -142,3 +142,129 @@
     color: var(--color-foreground);
   }
 }
+
+/* ── Obsidian & Gold design system ─────────────────────────────── */
+:root {
+  --background: oklch(0.16 0.012 60);
+  --foreground: oklch(0.94 0.015 85);
+  --card: oklch(0.21 0.014 62);
+  --card-foreground: oklch(0.94 0.015 85);
+  --popover: oklch(0.19 0.013 62);
+  --popover-foreground: oklch(0.94 0.015 85);
+  --primary: oklch(0.82 0.15 85);
+  --primary-foreground: oklch(0.17 0.02 70);
+  --secondary: oklch(0.27 0.016 65);
+  --secondary-foreground: oklch(0.93 0.02 85);
+  --muted: oklch(0.25 0.012 62);
+  --muted-foreground: oklch(0.72 0.03 82);
+  --accent: oklch(0.55 0.11 195);
+  --accent-foreground: oklch(0.14 0.01 70);
+  --destructive: oklch(0.6 0.2 27);
+  --destructive-foreground: oklch(0.97 0.01 85);
+  --border: oklch(0.36 0.04 82 / 45%);
+  --input: oklch(0.36 0.04 82 / 45%);
+  --ring: oklch(0.82 0.15 85);
+  --radius: 0.5rem;
+
+  --board-light: oklch(0.44 0.035 78);
+  --board-dark: oklch(0.24 0.02 66);
+  --trail-from: oklch(0.62 0.13 200);
+  --trail-to: oklch(0.86 0.16 88);
+  --closure: oklch(0.9 0.17 92);
+  --gold-line: oklch(0.72 0.12 85 / 60%);
+  --font-display: "Cinzel", Georgia, serif;
+  --font-body: "Jost", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+body {
+  font-family: var(--font-body);
+  background-image:
+    radial-gradient(1100px 500px at 50% -12%, oklch(0.3 0.05 85 / 32%), transparent 70%),
+    radial-gradient(700px 400px at 100% 100%, oklch(0.3 0.05 200 / 18%), transparent 70%);
+  background-attachment: fixed;
+}
+
+.font-display { font-family: var(--font-display); }
+.font-mono-x { font-family: var(--font-mono); }
+
+.board-frame {
+  padding: 0.85rem;
+  border-radius: 0.9rem;
+  background: linear-gradient(145deg, oklch(0.34 0.05 85), oklch(0.2 0.02 70));
+  box-shadow:
+    0 0 0 1px var(--gold-line),
+    0 26px 60px -20px oklch(0 0 0 / 80%),
+    inset 0 1px 0 oklch(0.9 0.1 90 / 25%);
+}
+
+.sq {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: filter 0.2s ease, background-color 0.25s ease;
+}
+.sq-light { background: var(--board-light); }
+.sq-dark { background: var(--board-dark); }
+.sq-visited { filter: saturate(1.2) brightness(1.12); }
+.sq:hover { filter: brightness(1.35); }
+
+.coord {
+  position: absolute;
+  font-size: clamp(6px, 0.85vw, 10px);
+  letter-spacing: 0.08em;
+  color: oklch(0.88 0.11 88 / 70%);
+  font-family: var(--font-mono);
+}
+.coord-rank { top: 2px; left: 3px; }
+.coord-file { bottom: 1px; right: 3px; }
+
+.sq-num {
+  font-family: var(--font-mono);
+  font-size: clamp(8px, 1.1vw, 13px);
+  color: oklch(0.96 0.02 90 / 85%);
+  text-shadow: 0 0 8px oklch(0.2 0 0 / 90%);
+}
+.sq-deg {
+  font-family: var(--font-mono);
+  font-size: clamp(8px, 1.1vw, 13px);
+  color: var(--primary);
+  border: 1px solid var(--gold-line);
+  border-radius: 999px;
+  padding: 0 4px;
+  background: oklch(0.15 0.01 70 / 65%);
+  animation: pulse-deg 1.8s ease-in-out infinite;
+}
+@keyframes pulse-deg {
+  0%, 100% { opacity: 0.65; }
+  50% { opacity: 1; }
+}
+
+.trail-glow { filter: drop-shadow(0 0 1.2px var(--trail-to)); }
+.closure-ribbon {
+  filter: drop-shadow(0 0 2px var(--closure));
+  animation: ribbon 1.4s ease-in-out infinite;
+}
+@keyframes ribbon {
+  0%, 100% { opacity: 0.45; stroke-width: 0.8; }
+  50% { opacity: 1; stroke-width: 1.6; }
+}
+
+.knight {
+  position: absolute;
+  transform: translate(-50%, -58%);
+  font-size: clamp(20px, 4.2vw, 42px);
+  line-height: 1;
+  color: oklch(0.96 0.09 90);
+  text-shadow: 0 0 14px oklch(0.85 0.16 88 / 80%);
+  transition: left 0.28s cubic-bezier(0.34, 1.4, 0.5, 1), top 0.28s cubic-bezier(0.34, 1.4, 0.5, 1);
+  pointer-events: none;
+}
+
+.panel {
+  border: 1px solid var(--border);
+  background: oklch(0.2 0.013 65 / 75%);
+  border-radius: 0.75rem;
+  backdrop-filter: blur(6px);
+}
