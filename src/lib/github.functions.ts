@@ -29,7 +29,7 @@ export const listGitHubBranches = createServerFn({ method: "GET" }).handler(
 
     try {
       const response = await fetch(
-        `${GATEWAY_URL}/${GITHUB_REPO.owner}/${GITHUB_REPO.repo}/branches?per_page=100`,
+        `${GATEWAY_URL}/repos/${GITHUB_REPO.owner}/${GITHUB_REPO.repo}/branches?per_page=100`,
         {
           headers: {
             Accept: "application/vnd.github+json",
