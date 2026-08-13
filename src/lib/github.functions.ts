@@ -52,14 +52,14 @@ export const listGitHubBranches = createServerFn({ method: "GET" }).handler(
       return {
         ok: true as const,
         branches,
-        current: (globalThis as unknown as { __GIT_BRANCH__?: string }).__GIT_BRANCH__ ?? "unknown",
+        current: __GIT_BRANCH__ ?? "unknown",
       };
     } catch (err) {
       console.error("Failed to list GitHub branches:", err);
       return {
         ok: false as const,
         branches: [] as string[],
-        current: (globalThis as unknown as { __GIT_BRANCH__?: string }).__GIT_BRANCH__ ?? "unknown",
+        current: __GIT_BRANCH__ ?? "unknown",
         error: err instanceof Error ? err.message : "Unknown error",
       };
     }
