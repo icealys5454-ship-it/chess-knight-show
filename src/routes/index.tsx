@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { KnightBoard } from "@/components/KnightBoard";
 import { Compass } from "@/components/Compass";
+import { GitHubBar } from "@/components/GitHubBar";
 import { playFanfare, playHop, playError } from "@/lib/audio";
 import {
   PRESETS,
