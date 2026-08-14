@@ -45,6 +45,3 @@ Knight_64Bitboard[8][8];
       }
  Return Offset;
 }
-
-	 
-	
